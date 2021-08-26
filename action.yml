@@ -1,0 +1,16 @@
+name: "Check Clean Git Tree"
+description: "Check for uncommitted changes in the current repository. Used to prevent partial commits that didn't update all generated filed."
+runs:
+  using: "composite"
+  steps:  
+    - name: Check clean tree
+      shell: bash
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "ERROR: Git tree is dirty. A build step has resulted in file changes. Ensure all changes are committed in git."
+          echo
+          git diff
+          echo
+          git status
+          exit 1
+        fi
