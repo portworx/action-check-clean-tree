@@ -13,10 +13,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    # ...more steps
+    # ...steps which potentially modify the tree
 
     - name: Check clean git tree
       uses: portworx/action-check-clean-tree@v1
-
-    # ...more steps
 ```
